@@ -1,0 +1,160 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+
+.testi-section {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+    background: white;
+
+  padding: 120px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.testi-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.testi-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #c509571a;
+  color: #fb3e8d;
+  border-radius: 100px;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.testi-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -2px;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #fb3e8d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Marquee Logic */
+.testi-marquee-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  
+  /* This creates the professional fade effect at the edges */
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-row {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 30px;
+  animation: scrollLeft 40s linear infinite;
+}
+
+.row-reverse .marquee-content {
+  animation: scrollRight 40s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Card Styling */
+.testi-card {
+  width: 400px;
+  flex-shrink: 0;
+      background: linear-gradient(135deg, #242d44 0%, #4e5978 100%);
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  padding: 35px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.testi-card:hover {
+  border-color: #fb3e8d;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(251, 62, 141, 0.08);
+}
+
+.quote-icon {
+  color: #fb3e8d;
+  opacity: 0.2;
+  margin-bottom: 15px;
+}
+
+.star-rating {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.testi-text {
+  font-size: 1.1rem;
+  color: white;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 30px;
+  min-height: 80px;
+}
+
+.testi-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 20px;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-name {
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.user-role {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* Background Glow Decoration */
+.testi-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(251, 62, 141, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}

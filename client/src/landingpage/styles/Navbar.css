@@ -1,81 +1,154 @@
-
-/* client/src/landingpage/styles/Navbar.css */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap');
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 5%;
-  max-width: 1400px;
-  margin: 0 auto;
-  font-family: 'Inter', sans-serif;
-  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+  z-index: 1000;
+  padding: 25px 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
+/* Glassmorphism state on scroll */
+.nav-scrolled {
+  padding: 15px 0;
+  background: rgba(15, 23, 42, 0.8); /* Dark glass */
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo Styling */
 .nav-logo {
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  gap: 0.5rem;
+  gap: 12px;
+  cursor: pointer;
 }
 
-.nav-logo-icon {
-  color: #fb3e8d; /* Vibrant pink matching the image */
+.logo-icon-box {
+  background: linear-gradient(135deg, #fb3e8d, #7c3aed);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 8px 15px rgba(251, 62, 141, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover .logo-icon-box {
+  transform: rotate(-10deg) scale(1.1);
 }
 
 .logo-text {
-  color: #111827; /* Dark text for 'Style' */
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1px;
 }
 
-.logo-wow {
-  color: #fb3e8d; /* Vibrant pink for 'Wow' */
-}
+.text-pink { color: #fb3e8d; }
 
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 3rem; /* Spacing between links and the login button */
-  
-}
-
+/* Nav Links */
 .nav-links {
   display: flex;
-  gap: 2rem;
+  list-style: none;
+  gap: 35px;
 }
 
-.nav-links a {
+.nav-item {
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
-  color: #4b5563; /* Grayish blue for links */
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.2s ease;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.nav-links a:hover {
+.nav-item:hover {
   color: #fb3e8d;
 }
 
+/* The Animated Underline */
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #fb3e8d;
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+/* Login Button */
 .nav-login-btn {
-  background-color: #fb3e8d;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.8rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .nav-login-btn:hover {
-  background-color: #e02a76;
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive Hide for Mobile */
-@media (max-width: 1024px) {
-  .nav-menu {
-    display: none; 
+/* Mobile Toggle */
+.mobile-toggle {
+  display: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 992px) {
+  .mobile-toggle { display: block; }
+  
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #0f172a;
+    flex-direction: column;
+    padding: 40px;
+    gap: 25px;
+    text-align: center;
+    transform: translateY(-150%);
+    transition: transform 0.5s ease;
+    z-index: -1;
+  }
+
+  .nav-active {
+    transform: translateY(0);
   }
 }

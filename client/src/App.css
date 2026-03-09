@@ -1,6 +1,25 @@
+/* 1. Reset and Full Height */
+#root, body, html {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+}
+
+/* 2. The App Container (The "Sticky Footer" Magic) */
 .App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Forces the app to be at least the height of the screen */
   text-align: center;
 }
+
+/* 3. The Main Content Area */
+/* This pushes the footer down by taking up all available space */
+main {
+  flex: 1 0 auto; 
+}
+
+/* --- Your Original React Styles --- */
 
 .App-logo {
   height: 40vmin;
@@ -15,7 +34,8 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  /* Changed from min-height: 100vh to avoid clashing with the sticky footer */
+  padding: 60px 20px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,10 +49,6 @@
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

@@ -1,102 +1,76 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import { Camera, Shirt, Sparkles, ArrowRight } from 'lucide-react';
 import './styles/HowItWork.css';
 
 const HowItWorks = () => {
-  const elementsRef = useRef([]);
-
-  // Intersection Observer for smooth, premium scroll reveals
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-active');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    elementsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const stepsData = [
+  const steps = [
     {
-      id: "01",
-      title: "Digitize Your Silhouette",
-      subtitle: "The AI Body Mapping",
-      description: "Upload a simple photo or take a live snap. Our proprietary AI instantly maps your unique body structure, measurements, and skin undertones with pinpoint accuracy.",
-      image: "fashion1.jpg",
-      alt: "Woman taking a photo"
+      number: "01",
+      title: "Upload Your Photo",
+      desc: "Simply snapshot or upload a full-body picture. Our neural engine instantly maps your unique physique and posture.",
+      icon: <Camera className="step-icon" />,
+      color: "pink",
+      bgImage: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600&auto=format&fit=crop"
     },
     {
-      id: "02",
-      title: "Curate Your Wardrobe",
-      subtitle: "Smart Catalog Integration",
-      description: "Browse thousands of styles from top brands. Let our AI Stylist analyze current trends and your personal profile to recommend pieces that complement your exact body type.",
-      image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop",
-      alt: "Curated fashion rack"
+      number: "02",
+      title: "Choose Your Outfit",
+      desc: "Browse hundreds of styles from top brands. Select any garment, and our AI will digitally warp and drape it onto your photo.",
+      icon: <Shirt className="step-icon" />,
+      color: "purple",
+      bgImage: "https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=600&auto=format&fit=crop"
     },
     {
-      id: "03",
-      title: "Experience the Fit",
-      subtitle: "Photorealistic Virtual Try-On",
-      description: "Watch the magic unfold. See a hyper-realistic simulation of how the fabric drapes, fits, and moves on your actual body. No more guessing—know it fits before you buy.",
-      image: "fashion2.jpg",
-      alt: "High fashion modeling"
+      number: "03",
+      title: "Instant Virtual Fit",
+      desc: "Get a hyper-realistic Before/After view. Analyze size predictions, color suitability, and receive AI styling suggestions.",
+      icon: <Sparkles className="step-icon" />,
+      color: "blue",
+      bgImage: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format&fit=crop"
     }
   ];
 
-  const addToRefs = (el) => {
-    if (el && !elementsRef.current.includes(el)) {
-      elementsRef.current.push(el);
-    }
-  };
-
   return (
-    <section className="premium-how-it-works">
-      {/* Decorative background blur elements */}
-      <div className="bg-glow glow-pink"></div>
-      <div className="bg-glow glow-blue"></div>
+    <section id="how-it-works" className="how-section">
+      <div className="how-header">
+        {/* <span className="how-badge">Process</span> */}
+        <h2 className="how-title">The Future of Fitting, <span className="text-gradient">Simplified.</span></h2>
+      </div>
 
-      <div className="container">
-        <div className="header-content reveal-on-scroll" ref={addToRefs}>
-          {/* <span className="eyebrow">The Process</span> */}
-          <h2> How It <span> Work</span></h2>
-          <p>Experience a frictionless journey from discovery to the perfect fit.</p>
-        </div>
+      <div className="how-timeline-container">
+        {/* The Vertical Connection Line */}
+        <div className="timeline-line"></div>
 
-        <div className="steps-wrapper">
-          {stepsData.map((step, index) => (
-            <div 
-              className={`step-row ${index % 2 !== 0 ? 'reverse' : ''}`} 
-              key={step.id}
-            >
-              {/* Image Section */}
-              <div className="step-image-container reveal-on-scroll" ref={addToRefs}>
-                <div className="image-wrapper">
-                  <img src={step.image} alt={step.alt} className="step-image" />
-                  {/* <div className="glass-badge">
-                    <span>AI Powered</span>
-                  </div> */}
-                </div>
-              </div>
+        {steps.map((step, index) => (
+          <div className={`how-step-card card-${step.color}`} key={index}>
+            {/* The Step Number (Floating and Large) */}
+            <div className="step-number-wrapper">
+              <span className="step-number">{step.number}</span>
+              <div className="step-dot"></div>
+            </div>
 
-              {/* Text Section */}
-              <div className="step-text-container reveal-on-scroll" ref={addToRefs}>
-                <div className="step-number">{step.id}</div>
-                <h4 className="step-subtitle">{step.subtitle}</h4>
-                <h3 className="step-title">{step.title}</h3>
-                <p className="step-description">{step.description}</p>
+            {/* Content Side */}
+            <div className="step-content">
+              <div className="step-icon-box">{step.icon}</div>
+              <h3 className="step-title">{step.title}</h3>
+              <p className="step-desc">{step.desc}</p>
+              <button className="step-learn-btn">
+                Learn More <ArrowRight size={16} />
+              </button>
+            </div>
+
+            {/* Image/Visual Side */}
+            <div className="step-visual">
+              <div className="step-image-wrapper">
+                <img src={step.bgImage} alt={step.title} className="step-img" />
+                <div className="step-overlay"></div>
+                {/* Decorative floating UI elements */}
+                <div className="step-ui-tag ui-top">NEURAL_MAP://ACTIVE</div>
+                <div className="step-ui-tag ui-bottom">FIT_CONFIDENCE: 98.7%</div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

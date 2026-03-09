@@ -1,31 +1,70 @@
-
-// client/src/landingpage/Navbar.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, User, Menu, X } from 'lucide-react';
+import { Link } from 'react-scroll'; // npm install react-scroll
 import './styles/Navbar.css';
 
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
+
+  // Effect to change background on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+ // Inside Navbar.js
+const navLinks = [
+  { name: 'Home', to: 'hero' },           // Matches id="hero"
+  { name: 'Process', to: 'how-it-works' }, // Matches id="how-it-works"
+  { name: 'Features', to: 'features' },   // Matches id="features"
+  { name: 'Why Us', to: 'why-us' },       // Matches id="why-us"
+  { name: 'Reviews', to: 'testimonials' },// Matches id="testimonials"
+];
+
   return (
-    <nav className="navbar">
-      {/* Left side: Logo */}
-      <div className="nav-logo">
-        <svg className="nav-logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="9" y1="3" x2="9" y2="21"></line>
-        </svg>
-        <span className="logo-text">StyleMirror<span className="logo-wow">AI</span></span>
-      </div>
-      
-      {/* Right side: Links and Button */}
-      <div className="nav-menu">
-        <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#features">Features</a>
-          <a href="#why-us">Why Us</a>
-          
-          <a href="#contact">Contact</a>
+    <nav className={`navbar ${scrolled ? 'nav-scrolled' : ''}`}>
+      <div className="nav-container">
+        {/* Left Side: Logo */}
+        <div className="nav-logo">
+          <div className="logo-icon-box">
+            <Sparkles size={22} className="logo-icon" />
+          </div>
+          <span className="logo-text">Style<span className="text-pink">Mirror</span></span>
         </div>
-        <button className="nav-login-btn">Login</button>
+
+        {/* Center: Navigation Links */}
+        <ul className={`nav-links ${mobileMenu ? 'nav-active' : ''}`}>
+          {navLinks.map((link) => (
+            <li key={link.to}>
+             <Link
+  to={link.to}
+  smooth={true}
+  duration={800}
+  offset={-100} // Increase this number to leave more space for the navbar
+  className="nav-item"
+>
+  {link.name}
+</Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Right Side: Login Button */}
+        <div className="nav-actions">
+          <button className="nav-login-btn" onClick={() => window.location.href='/login'}>
+            <User size={18} />
+            <span>Login</span>
+          </button>
+          
+          {/* Mobile Toggle */}
+          <div className="mobile-toggle" onClick={() => setMobileMenu(!mobileMenu)}>
+            {mobileMenu ? <X size={28} /> : <Menu size={28} />}
+          </div>
+        </div>
       </div>
     </nav>
   );

@@ -1,59 +1,74 @@
-// client/src/landingpage/HeroSection.js
 import React from 'react';
+import { Sparkles, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import Navbar from './Navbar';
 import './styles/HeroSection.css';
-import Navbar from './Navbar'; // Ensure Navbar is imported so it sits inside the hero background
 
 const HeroSection = () => {
   return (
-    <div className="hero-container">
-      {/* We place the Navbar here so it shares the same gradient background */}
+    <div id = "hero" className="hero-master-wrapper">
       <Navbar />
-
-      {/* Main Hero Area */}
-      <main className="hero-content">
-        
-        {/* Left Side: Text Content */}
-        <div className="hero-text-col">
-          <h1 className="hero-title">
-            StyleMirror AI <span className="highlight-pink">Try Before You Buy —</span> Powered by AI Fashion Intelligence
+      
+      {/* Dynamic Background Particles */}
+      <div className="hero-bg-glow"></div>
+      
+      <main className="hero-main">
+        <div className="hero-left-content">
+          <div className="hero-status-tag">
+            <div className="pulse-dot"></div>
+            <span>V3.0 NEURAL ENGINE ACTIVE</span>
+          </div>
+          
+          <h1 className="hero-main-title">
+            The Mirror <br /> 
+            <span className="hero-gradient-text">That Knows Your Style.</span>
           </h1>
           
-          <p className="hero-subtitle">
-            Upload your photo and instantly see how clothes look on you. AI analyzes your body shape, size, and skin tone to recommend the perfect outfit before you buy.
+          <p className="hero-description">
+            Experience the world’s first <strong>Neural-Fit™</strong> virtual fitting room. 
+            Upload a photo, and let AI map your physique with 99.8% precision for a perfect 
+            style match—instantly.
           </p>
-          
-          <div className="hero-actions">
-            <button className="btn-primary">Start Free Trial</button>
-            <button className="btn-outline">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-              Login
+
+          <div className="hero-cta-group">
+            <button className="hero-primary-btn">
+              Start Virtual Fitting <ArrowRight size={20} />
+            </button>
+            <button className="hero-secondary-btn">
+              <Zap size={18} fill="currentColor" />
+              Explore Lookbook
             </button>
           </div>
-          
-          <div className="hero-social-proof">
-            <div className="avatar-group">
-              <img src="https://i.pravatar.cc/100?img=1" alt="Customer 1" className="avatar" />
-              <img src="https://i.pravatar.cc/100?img=2" alt="Customer 2" className="avatar" />
-              <img src="https://i.pravatar.cc/100?img=3" alt="Customer 3" className="avatar" />
+
+          <div className="hero-trust-row">
+            <div className="trust-item">
+              <ShieldCheck size={18} />
+              <span>Secure Data Encryption</span>
             </div>
-            <span className="social-text">Join 10,000+ happy customers</span>
+            <div className="trust-divider"></div>
+            <div className="trust-item">
+              <Sparkles size={18} />
+              <span>AI-Driven Accuracy</span>
+            </div>
           </div>
         </div>
 
-        {/* Right Side: Image Placeholder */}
-        <div className="hero-image-col">
-          <div className="image-wrapper">
+        <div className="hero-right-visual">
+          <div className="hero-image-container">
+            {/* The AI Scanner Effect Overlay */}
+            <div className="scanner-line"></div>
+            <div className="ui-element-floating ui-1">📏 Perfect Fit: M</div>
+            <div className="ui-element-floating ui-2">🎨 Skin Tone: Warm</div>
+            
             <img 
-              src="/fashion.jpg" 
-              alt="Fashion shopping" 
-              className="hero-main-img" 
+              src="fashion.jpg" 
+              alt="AI Fashion Analysis" 
+              className="hero-display-img"
             />
+            
+            {/* Decorative Glass Card behind the image */}
+            <div className="hero-glass-backing"></div>
           </div>
         </div>
-        
       </main>
     </div>
   );

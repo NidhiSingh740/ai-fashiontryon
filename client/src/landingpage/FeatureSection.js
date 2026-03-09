@@ -47,8 +47,8 @@ const FeaturesSection = () => {
   return (
     <section className="features-container" id="features">
       <div className="features-header">
-        <span className="features-badge">Core Capabilities</span>
-        <h2 className="features-main-title">The Future of <span className="text-gradient">Digital Fitting</span></h2>
+        {/* <span className="features-badge">Core Capabilities</span> */}
+        <h2 className="features-main-title"> What are the  <span className="text-gradient">Features</span></h2>
         <p className="features-subtitle">
           Cutting-edge AI modules designed to eliminate the guesswork from online shopping.
         </p>
