@@ -1,0 +1,81 @@
+
+/* client/src/landingpage/styles/Navbar.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  background-color: transparent;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  gap: 0.5rem;
+}
+
+.nav-logo-icon {
+  color: #fb3e8d; /* Vibrant pink matching the image */
+}
+
+.logo-text {
+  color: #111827; /* Dark text for 'Style' */
+}
+
+.logo-wow {
+  color: #fb3e8d; /* Vibrant pink for 'Wow' */
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 3rem; /* Spacing between links and the login button */
+  
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4b5563; /* Grayish blue for links */
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #fb3e8d;
+}
+
+.nav-login-btn {
+  background-color: #fb3e8d;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.8rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-login-btn:hover {
+  background-color: #e02a76;
+}
+
+/* Responsive Hide for Mobile */
+@media (max-width: 1024px) {
+  .nav-menu {
+    display: none; 
+  }
+}

@@ -1,0 +1,162 @@
+/* client/src/landingpage/styles/HeroSection.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+.hero-container {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #fff5f8 0%, #ffffff 100%);
+  min-height: 100vh; /* Adjust if you want the hero to take up less space now that nav is separate */
+  color: #111827;
+  overflow-x: hidden;
+}
+
+/* --- Main Hero Content --- */
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 4rem;
+}
+
+/* Left Column: Text */
+.hero-text-col {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 3.8rem;
+  line-height: 1.15;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+.highlight-pink {
+  color: #fb3e8d;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #6b7280;
+  margin-bottom: 2.5rem;
+  max-width: 90%;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.btn-primary {
+  background-color: #fb3e8d;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(251, 62, 141, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #fb3e8d;
+  border: 1px solid #fb3e8d;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: #fff0f5;
+}
+
+/* Social Proof */
+.hero-social-proof {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar-group {
+  display: flex;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-left: -10px;
+  object-fit: cover;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.social-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Right Column: Image */
+.hero-image-col {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(251, 62, 141, 0.25);
+}
+
+.hero-main-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+  }
+  
+  .hero-text-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+  }
+}

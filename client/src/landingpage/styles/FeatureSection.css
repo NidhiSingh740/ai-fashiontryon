@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+.features-container {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 100px 8%;
+  background: #f8fafc;
+}
+
+.features-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.features-main-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 20px;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #fb3e8d, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Grid Layout */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Card Styling */
+.feature-card {
+  position: relative;
+  height: 450px;
+  border-radius: 0px; /* Matching the sharp/clean look of the screenshot */
+  overflow: hidden;
+  cursor: pointer;
+  background: #000;
+}
+
+/* Background Image */
+.card-image-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+}
+
+/* Dark Gradient Overlay */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 10%, transparent 60%);
+  transition: background 0.4s ease;
+}
+
+/* Heading at the Bottom */
+.card-static-content {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+  z-index: 2;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.feature-item-title {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Hover Content (Initially Hidden) */
+.card-hover-content {
+  position: absolute;
+  inset: 0;
+  padding: 40px;
+  background: rgba(30, 41, 59, 0.95); /* Deep solid-ish overlay on hover */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-icon-wrapper {
+  color: #fb3e8d;
+  margin-bottom: 20px;
+}
+
+.hover-title {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.feature-item-desc {
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Hover States */
+.feature-card:hover .card-image-bg {
+  transform: scale(1.1);
+}
+
+.feature-card:hover .card-static-content {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.feature-card:hover .card-hover-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-card:hover .card-overlay {
+  background: rgba(15, 23, 42, 0.4);
+}
+
+@media (max-width: 768px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .feature-card { height: 350px; }
+}

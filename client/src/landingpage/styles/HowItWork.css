@@ -1,0 +1,226 @@
+:root {
+  --theme-pink: #f93a8c;
+  --theme-dark: #121212;
+  --theme-text: #2d3748;
+  --theme-gray: #718096;
+  --bg-color: #fdfafb;
+}
+
+.premium-how-it-works {
+  position: relative;
+  padding: 120px 5%;
+  background-color: var(--bg-color);
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Background Glowing Mesh Effects */
+.bg-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 0;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.glow-pink {
+  top: -100px;
+  left: -200px;
+  background: rgba(249, 58, 140, 0.3);
+}
+
+.glow-blue {
+  bottom: 10%;
+  right: -200px;
+  background: rgba(100, 150, 255, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header Styling */
+.header-content {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--theme-pink);
+  margin-bottom: 16px;
+  background: rgba(249, 58, 140, 0.1);
+  padding: 8px 16px;
+  border-radius: 30px;
+}
+
+.header-content h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--theme-dark);
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.header-content h2 span {
+  background: linear-gradient(135deg, var(--theme-pink), #ff7eb3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-content p {
+  font-size: 1.25rem;
+  color: var(--theme-gray);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Steps Layout */
+.steps-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+.step-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.step-row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Image Container */
+.step-image-container {
+  flex: 1;
+  max-width: 550px;
+}
+
+.image-wrapper {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+  /* Aspect ratio for premium editorial look */
+  aspect-ratio: 3/3.5; 
+}
+
+.step-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-wrapper:hover .step-image {
+  transform: scale(1.05);
+}
+
+/* Glassmorphism Badge */
+.glass-badge {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 24px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Container */
+.step-text-container {
+  flex: 1;
+  max-width: 500px;
+}
+
+.step-number {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(249, 58, 140, 0.2);
+  margin-bottom: 20px;
+}
+
+.step-subtitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--theme-pink);
+  margin-bottom: 12px;
+}
+
+.step-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--theme-dark);
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.step-description {
+  font-size: 1.125rem;
+  color: var(--theme-text);
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+/* Scroll Reveal Animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .step-row, .step-row.reverse {
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+  }
+
+  .header-content h2 {
+    font-size: 2.5rem;
+  }
+
+  .step-image-container, .step-text-container {
+    max-width: 100%;
+  }
+
+  .glass-badge {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .step-number {
+    font-size: 4rem;
+  }
+
+  .step-title {
+    font-size: 2rem;
+  }
+}
