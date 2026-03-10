@@ -1,8 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Mail, Lock, User, Ruler, Palette, ChevronRight, ChevronLeft, Sparkles, Shirt, Camera, Users } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import './AuthPage.css';
 
 const AuthPage = () => {
+
+    const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [step, setStep] = useState(1);
   const [message, setMessage] = useState({ text: '', type: '' });
@@ -40,6 +43,7 @@ const AuthPage = () => {
       if (response.ok) {
         setMessage({ text: data.message, type: 'success' });
         if (isLogin) localStorage.setItem('token', data.token);
+        navigate('/dashboard');
       } else {
         setMessage({ text: data.message, type: 'error' });
       }
