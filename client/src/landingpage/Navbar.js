@@ -55,7 +55,7 @@ const navLinks = [
 
         {/* Right Side: Login Button */}
         <div className="nav-actions">
-          <button className="nav-login-btn" onClick={() => window.location.href='/login'}>
+          <button className="nav-login-btn" onClick={() => window.location.href='/auth'}>
             <User size={18} />
             <span>Login</span>
           </button>
