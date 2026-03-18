@@ -1,3 +1,4 @@
+// client/src/AuthPage.js
 import React, { useState, useRef } from 'react';
 import { Mail, Lock, User, Ruler, Palette, ChevronRight, ChevronLeft, Sparkles, Shirt, Camera, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +28,7 @@ const AuthPage = () => {
       setFormData({ ...formData, profileImage: URL.createObjectURL(file) });
     }
   };
-
+               
   const handleSubmit = async (e) => {
     e.preventDefault();
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
@@ -40,13 +41,20 @@ const AuthPage = () => {
       });
       const data = await response.json();
 
-      if (response.ok) {
-        setMessage({ text: data.message, type: 'success' });
-        if (isLogin) localStorage.setItem('token', data.token);
-        navigate('/dashboard');
-      } else {
-        setMessage({ text: data.message, type: 'error' });
-      }
+     if (response.ok) {
+  setMessage({ text: data.message, type: 'success' });
+
+  if (isLogin) {
+ 
+    localStorage.setItem('token', data.token);
+    navigate('/dashboard');
+  } else {
+
+    setIsLogin(true);
+    setStep(1);
+    
+  }
+}
     } catch (err) {
       setMessage({ text: "Connection Failed", type: 'error' });
     }

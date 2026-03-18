@@ -22,17 +22,20 @@ function LandingPage() {
     </>
   );
 }
-
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/auth" element={<AuthPage />} />
-
-      </Routes>
-      <Footer />
-
+      <div className="App"> 
+        <main> 
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+     
+          </Routes>
+        </main>
+        
+        <Footer />
+      </div>
     </Router>
   );
 }
