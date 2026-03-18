@@ -1,4 +1,3 @@
-// client/src/AuthPage.js
 import React, { useState, useRef } from 'react';
 import { Mail, Lock, User, Ruler, Palette, ChevronRight, ChevronLeft, Sparkles, Shirt, Camera, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +5,7 @@ import './AuthPage.css';
 
 const AuthPage = () => {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [step, setStep] = useState(1);
   const [message, setMessage] = useState({ text: '', type: '' });
@@ -41,20 +40,29 @@ const AuthPage = () => {
       });
       const data = await response.json();
 
-     if (response.ok) {
-  setMessage({ text: data.message, type: 'success' });
+      if (response.ok) {
+        setMessage({ text: data.message, type: 'success' });
 
-  if (isLogin) {
- 
-    localStorage.setItem('token', data.token);
-    navigate('/dashboard');
-  } else {
-
-    setIsLogin(true);
-    setStep(1);
-    
-  }
-}
+        if (isLogin) {
+          // SAVE TOKEN AND USER OBJECT
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user)); 
+          
+          // Redirect after a short delay so user sees the success message
+          setTimeout(() => {
+            navigate('/dashboard');
+          }, 1500);
+        } else {
+          // After registration, move to login
+          setTimeout(() => {
+            setIsLogin(true);
+            setStep(1);
+            setMessage({ text: 'Registration successful! Please sign in.', type: 'success' });
+          }, 1500);
+        }
+      } else {
+        setMessage({ text: data.message || "Authentication Failed", type: 'error' });
+      }
     } catch (err) {
       setMessage({ text: "Connection Failed", type: 'error' });
     }
