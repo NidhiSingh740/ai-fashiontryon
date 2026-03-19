@@ -14,6 +14,8 @@ const AuthPage = () => {
   const [formData, setFormData] = useState({
     name: '', email: '', password: '', gender: '',
     height: '', weight: '', skinTone: '',
+
+    
     chest: '', profileImage: null
   });
 

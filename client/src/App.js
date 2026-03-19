@@ -13,6 +13,7 @@ import AuthPage from "./AuthPage";
 
 // Dashboard Components
 import Sidebar from "./components/dashboard/Sidebar";
+import DashboardHome from "./components/dashboard/DashboardHome"; // <-- NEW IMPORT
 
 // Landing Page Grouping
 function LandingPage() {
@@ -34,8 +35,9 @@ function AppContent() {
   // Define which routes should show the Sidebar
   const isDashboardRoute = 
     location.pathname.startsWith('/dashboard') || 
-    location.pathname.startsWith('/try-on') ||
     location.pathname.startsWith('/profile') ||
+
+    location.pathname.startsWith('/try-on') ||
     location.pathname.startsWith('/size-guide') ||
     location.pathname.startsWith('/color-analysis') ||
     location.pathname.startsWith('/ai-stylist') ||
@@ -60,27 +62,29 @@ function AppContent() {
         <main style={{ 
           flex: 1, 
           padding: isDashboardRoute ? '40px' : '0', 
-          width: '100%' 
+          width: '100%',
+          background: isDashboardRoute ? '#020617' : 'transparent'
         }}>
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/auth" element={<AuthPage />} />
 
-            {/* Dashboard Routes */}
-            <Route path="/dashboard" element={<div>Welcome to your Dashboard Home</div>} />
-            <Route path="/try-on" element={<div>AI Virtual Try-On Module</div>} />
-            <Route path="/profile" element={<div>User Profile Settings</div>} />
-            <Route path="/size-guide" element={<div>Size Recommendation Module</div>} />
-            <Route path="/color-analysis" element={<div>Color Analysis Module</div>} />
-            <Route path="/ai-stylist" element={<div>AI Stylist Module</div>} />
-            <Route path="/wishlist" element={<div>Saved Outfits</div>} />
-            <Route path="/history" element={<div>View History</div>} />
+            {/* Dashboard Routes - NOW USING REAL COMPONENTS */}
+            <Route path="/dashboard" element={<DashboardHome />} />
+            <Route path="/profile" element={<div style={{color: 'white'}}>User Profile Settings</div>} />
+
+            <Route path="/try-on" element={<div style={{color: 'white'}}>AI Virtual Try-On Module (Coming Soon)</div>} />
+            <Route path="/size-guide" element={<div style={{color: 'white'}}>Size Recommendation Module</div>} />
+            <Route path="/color-analysis" element={<div style={{color: 'white'}}>Color Analysis Module</div>} />
+            <Route path="/ai-stylist" element={<div style={{color: 'white'}}>AI Stylist Module</div>} />
+            <Route path="/wishlist" element={<div style={{color: 'white'}}>Saved Outfits</div>} />
+            <Route path="/history" element={<div style={{color: 'white'}}>View History</div>} />
           </Routes>
         </main>
       </div>
 
-      {/* Footer is now globally visible */}
+      {/* Footer visible on every page */}
       <Footer />
     </div>
   );

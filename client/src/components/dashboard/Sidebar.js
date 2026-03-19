@@ -36,13 +36,14 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "Dashboard Home", icon: <LayoutDashboard size={20} />, path: "/dashboard" },
+    { name: "My Profile", icon: <User size={20} />, path: "/profile" },
+
     { name: "Virtual Try-On", icon: <Shirt size={20} />, path: "/try-on" },
     { name: "Size Recommendation", icon: <Maximize size={20} />, path: "/size-guide" },
     { name: "Color Analysis", icon: <Palette size={20} />, path: "/color-analysis" },
     { name: "AI Stylist", icon: <Sparkles size={20} />, path: "/ai-stylist" },
     { name: "Saved Outfits", icon: <Heart size={20} />, path: "/wishlist" },
     { name: "History", icon: <History size={20} />, path: "/history" },
-    { name: "My Profile", icon: <User size={20} />, path: "/profile" },
   ];
 
   return (
