@@ -3,19 +3,27 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const path = require('path'); // Added path import
+const path = require('path');
 require('dotenv').config();
+
+// IMPORT THE USER MODEL FROM THE EXTERNAL FILE
+const User = require('./models/User'); 
 
 const app = express();
 
 // --- Middleware ---
-app.use(express.json()); 
+// CRITICAL: Increased limit for Base64 Image Uploads
+app.use(express.json({ limit: '50mb' })); 
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 
 // Serve the uploads folder statically
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// Add this in server.js
+
+// --- Routes Registration ---
 app.use('/api/dashboard', require('./routes/dashboard'));
+app.use('/api/profile', require('./routes/profile'));
+
 // --- MongoDB Connection ---
 const MONGO_URI = process.env.MONGO_URI || "your_mongodb_atlas_connection_string_here";
 
@@ -23,22 +31,7 @@ mongoose.connect(MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch(err => console.error("❌ MongoDB Connection Error:", err));
 
-// --- User Schema ---
-const userSchema = new mongoose.Schema({
-  name: String,
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  gender: String,
-  height: Number,
-  weight: Number,
-  skinTone: String,
-  chest: Number,
-  profileImage: String
-});
-
-const User = mongoose.model('User', userSchema);
-
-// --- Routes ---
+// --- Auth Routes (Moved inside server.js as per your structure) ---
 
 // 1. Register
 app.post('/api/auth/register', async (req, res) => {
@@ -51,7 +44,9 @@ app.post('/api/auth/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
-      name, email, gender, height, weight, skinTone, chest, profileImage,
+      name, email, gender, height, weight, skinTone, 
+      bodyMeasurements: { chest: chest || 0 }, // Map chest to the bodyMeasurements object
+      profileImage,
       password: hashedPassword
     });
 
@@ -63,7 +58,7 @@ app.post('/api/auth/register', async (req, res) => {
   }
 });
 
-// 2. Login (FIXED TO RETURN profileImage)
+// 2. Login
 app.post('/api/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -74,9 +69,9 @@ app.post('/api/auth/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign({ id: user._id }, "your_jwt_secret", { expiresIn: '1h' });
+    // Use secret from .env or fallback
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || "your_jwt_secret", { expiresIn: '24h' });
 
-    // Return the name and profileImage so the Sidebar can display them
     res.json({ 
       message: "Login successful", 
       token, 
@@ -92,5 +87,5 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

@@ -14,7 +14,7 @@ import AuthPage from "./AuthPage";
 // Dashboard Components
 import Sidebar from "./components/dashboard/Sidebar";
 import DashboardHome from "./components/dashboard/DashboardHome"; // <-- NEW IMPORT
-
+import ProfileSection from "./components/dashboard/ProfileSection";
 // Landing Page Grouping
 function LandingPage() {
   return (
@@ -72,7 +72,8 @@ function AppContent() {
 
             {/* Dashboard Routes - NOW USING REAL COMPONENTS */}
             <Route path="/dashboard" element={<DashboardHome />} />
-            <Route path="/profile" element={<div style={{color: 'white'}}>User Profile Settings</div>} />
+            <Route path="/profile" element={<ProfileSection />} />
+           
 
             <Route path="/try-on" element={<div style={{color: 'white'}}>AI Virtual Try-On Module (Coming Soon)</div>} />
             <Route path="/size-guide" element={<div style={{color: 'white'}}>Size Recommendation Module</div>} />

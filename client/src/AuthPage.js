@@ -14,9 +14,7 @@ const AuthPage = () => {
   const [formData, setFormData] = useState({
     name: '', email: '', password: '', gender: '',
     height: '', weight: '', skinTone: '',
-
-    
-    chest: '', profileImage: null
+   chest: '', profileImage: null
   });
 
   const handleInputChange = (e) => {
@@ -184,7 +182,7 @@ const AuthPage = () => {
                         <div className="input-box"><Palette size={18} /><input type="text" name="skinTone" placeholder="e.g. Fair" onChange={handleInputChange} autoComplete="off" /></div>
                       </div>
                       <div className="input-field">
-                        <label>Chest (cm)</label>
+                        <label>Chest (inch)</label>
                         <div className="input-box"><Shirt size={18} /><input type="number" name="chest" onChange={handleInputChange} /></div>
                       </div>
                     </div>
