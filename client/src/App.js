@@ -1,3 +1,4 @@
+// client/src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
@@ -13,8 +14,12 @@ import AuthPage from "./AuthPage";
 
 // Dashboard Components
 import Sidebar from "./components/dashboard/Sidebar";
-import DashboardHome from "./components/dashboard/DashboardHome"; // <-- NEW IMPORT
+import DashboardHome from "./components/dashboard/DashboardHome";
 import ProfileSection from "./components/dashboard/ProfileSection";
+
+// ✅ Path corrected to match your file structure
+import VirtualTryOn from "./components/dashboard/VirtualTryOn";
+
 // Landing Page Grouping
 function LandingPage() {
   return (
@@ -29,14 +34,13 @@ function LandingPage() {
   );
 }
 
+
 function AppContent() {
   const location = useLocation();
   
-  // Define which routes should show the Sidebar
   const isDashboardRoute = 
     location.pathname.startsWith('/dashboard') || 
     location.pathname.startsWith('/profile') ||
-
     location.pathname.startsWith('/try-on') ||
     location.pathname.startsWith('/size-guide') ||
     location.pathname.startsWith('/color-analysis') ||
@@ -70,12 +74,11 @@ function AppContent() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/auth" element={<AuthPage />} />
 
-            {/* Dashboard Routes - NOW USING REAL COMPONENTS */}
+            {/* Dashboard Routes */}
             <Route path="/dashboard" element={<DashboardHome />} />
             <Route path="/profile" element={<ProfileSection />} />
-           
+           <Route path="/try-on" element={<VirtualTryOn />} />
 
-            <Route path="/try-on" element={<div style={{color: 'white'}}>AI Virtual Try-On Module (Coming Soon)</div>} />
             <Route path="/size-guide" element={<div style={{color: 'white'}}>Size Recommendation Module</div>} />
             <Route path="/color-analysis" element={<div style={{color: 'white'}}>Color Analysis Module</div>} />
             <Route path="/ai-stylist" element={<div style={{color: 'white'}}>AI Stylist Module</div>} />
@@ -85,7 +88,6 @@ function AppContent() {
         </main>
       </div>
 
-      {/* Footer visible on every page */}
       <Footer />
     </div>
   );
